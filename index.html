@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>檸檬冰｜公職諮詢報名表</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --warm-white: #FFFDF9;
+    --lemon: #E8D96A;
+    --lemon-dark: #C4B84A;
+    --text-dark: #1C1A17;
+    --text-mid: #5A5750;
+    --text-light: #9A9590;
+    --border: #E2DDD6;
+    --border-focus: #C4B84A;
+    --accent-bg: #F5F0E8;
+    --danger: #C0392B;
+    --success-bg: #F0F7F0;
+    --success-border: #7BAF7B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    min-height: 100vh;
+    font-weight: 300;
+  }
+
+  /* header */
+  .page-header {
+    background: var(--warm-white);
+    border-bottom: 1px solid var(--border);
+    padding: 2.5rem 1.5rem 2rem;
+    text-align: center;
+  }
+  .brand-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.2rem;
+  }
+  .lemon-icon {
+    width: 36px; height: 36px;
+    background: var(--lemon);
+    border-radius: 50% 50% 50% 10%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .brand-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: .15em;
+    color: var(--text-dark);
+  }
+  .page-header h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 26px;
+    font-weight: 300;
+    letter-spacing: .08em;
+    margin-bottom: .6rem;
+  }
+  .page-header p {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.9;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* info strip */
+  .info-strip {
+    background: var(--text-dark);
+    color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0;
+  }
+  .info-item {
+    padding: 1rem 2rem;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,.1);
+    flex: 1;
+    min-width: 140px;
+  }
+  .info-item:last-child { border-right: none; }
+  .info-label { font-size: 11px; letter-spacing: .12em; color: rgba(255,255,255,.5); margin-bottom: 4px; }
+  .info-value { font-size: 15px; font-weight: 400; }
+  .info-value span { color: var(--lemon); }
+
+  /* bank box */
+  .bank-section {
+    background: var(--warm-white);
+    border-top: 1px solid var(--border);
+    padding: 1.25rem 1.5rem;
+    text-align: center;
+  }
+  .bank-section p { font-size: 13px; color: var(--text-mid); margin-bottom: .5rem; }
+  .bank-detail {
+    display: inline-flex;
+    gap: 2rem;
+    background: var(--accent-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: .7rem 1.5rem;
+    font-size: 14px;
+  }
+  .bank-detail span { color: var(--text-light); margin-right: 6px; font-size: 12px; }
+
+  /* form container */
+  .form-wrap {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+  }
+
+  /* section */
+  .form-section {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.4rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    width: 26px; height: 26px;
+    background: var(--lemon);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-dark);
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: .06em;
+  }
+
+  /* fields */
+  .field { margin-bottom: 1.1rem; }
+  .field:last-child { margin-bottom: 0; }
+  label {
+    display: block;
+    font-size: 12px;
+    letter-spacing: .06em;
+    color: var(--text-mid);
+    margin-bottom: 6px;
+  }
+  .req { color: var(--danger); margin-left: 2px; }
+  input[type=text], input[type=tel], input[type=email], select, textarea {
+    width: 100%;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dark);
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+    -webkit-appearance: none;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(196,184,74,.12);
+    background: var(--warm-white);
+  }
+  textarea { resize: vertical; line-height: 1.8; }
+  .hint { font-size: 11px; color: var(--text-light); margin-top: 5px; line-height: 1.6; }
+
+  /* radio type */
+  .radio-group { display: flex; gap: 10px; flex-wrap: wrap; }
+  .radio-option { flex: 1; min-width: 180px; }
+  .radio-option input[type=radio] { display: none; }
+  .radio-option label {
+    display: block;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    cursor: pointer;
+    background: var(--cream);
+    transition: all .2s;
+    font-size: 13px;
+    letter-spacing: 0;
+    color: var(--text-dark);
+    line-height: 1.6;
+  }
+  .radio-option label .opt-title { font-weight: 400; font-size: 14px; margin-bottom: 3px; }
+  .radio-option label .opt-desc { font-size: 12px; color: var(--text-light); }
+  .radio-option input[type=radio]:checked + label {
+    border-color: var(--border-focus);
+    background: #FAFAE8;
+    box-shadow: 0 0 0 3px rgba(196,184,74,.12);
+  }
+
+  /* topics */
+  .topic-block {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.1rem 1.1rem .9rem;
+    margin-bottom: .85rem;
+    position: relative;
+  }
+  .topic-block .topic-num {
+    font-size: 11px;
+    color: var(--text-light);
+    letter-spacing: .06em;
+    margin-bottom: 8px;
+  }
+  .remove-btn {
+    position: absolute;
+    top: 10px; right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--text-light);
+    line-height: 1;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: color .15s, background .15s;
+  }
+  .remove-btn:hover { color: var(--danger); background: #FEF0EF; }
+  .add-topic-btn {
+    width: 100%;
+    background: none;
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    padding: 11px;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 13px;
+    color: var(--text-mid);
+    cursor: pointer;
+    transition: all .2s;
+    letter-spacing: .04em;
+  }
+  .add-topic-btn:hover { border-color: var(--border-focus); color: var(--lemon-dark); background: #FAFAE8; }
+
+  /* disclaimer */
+  .disclaimer {
+    background: var(--accent-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.4rem;
+    font-size: 12px;
+    color: var(--text-mid);
+    line-height: 2;
+    margin-bottom: 1.25rem;
+  }
+  .disclaimer strong { color: var(--text-dark); font-weight: 400; }
+  .disclaimer .disclaimer-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-dark);
+    margin-bottom: .6rem;
+    letter-spacing: .06em;
+  }
+
+  /* agree */
+  .agree-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.7;
+    cursor: pointer;
+  }
+  .agree-row input[type=checkbox] { margin-top: 3px; accent-color: var(--lemon-dark); flex-shrink: 0; width: 16px; height: 16px; }
+
+  /* submit */
+  .submit-btn {
+    width: 100%;
+    background: var(--text-dark);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: .08em;
+    cursor: pointer;
+    transition: background .2s, transform .1s;
+  }
+  .submit-btn:hover { background: #2E2B26; }
+  .submit-btn:active { transform: scale(.99); }
+  .submit-btn:disabled { background: var(--border); cursor: not-allowed; }
+
+  .footer-note {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-light);
+    margin-top: 1rem;
+    line-height: 1.8;
+  }
+
+  /* success screen */
+  #success-screen {
+    display: none;
+    max-width: 620px;
+    margin: 3rem auto;
+    padding: 1.25rem;
+    text-align: center;
+  }
+  .success-card {
+    background: var(--warm-white);
+    border: 1px solid var(--success-border);
+    border-radius: 14px;
+    padding: 2.5rem 2rem;
+  }
+  .success-icon { font-size: 40px; margin-bottom: 1rem; }
+  .success-card h2 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: .8rem;
+    letter-spacing: .06em;
+  }
+  .success-card p { font-size: 13px; color: var(--text-mid); line-height: 2; }
+  .summary-box {
+    background: var(--accent-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+    text-align: left;
+    font-size: 13px;
+    line-height: 2;
+    color: var(--text-dark);
+  }
+  .summary-box .s-label { color: var(--text-light); font-size: 11px; letter-spacing: .06em; }
+  .summary-sep { border: none; border-top: 1px solid var(--border); margin: .75rem 0; }
+
+  @media(max-width:480px){
+    .info-item { min-width: 120px; padding: .8rem 1rem; }
+    .radio-option { min-width: 100%; }
+    .bank-detail { flex-direction: column; gap: .5rem; text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<div id="form-view">
+  <header class="page-header">
+    <div class="brand-mark">
+      <div class="lemon-icon">🍋</div>
+      <div class="brand-name">檸 檬 冰</div>
+    </div>
+    <h1>公職諮詢報名表</h1>
+    <p>一個已經登出 15 年公職的前公務員<br>分享體制內的真實經驗，陪你釐清方向</p>
+  </header>
+
+  <div class="info-strip">
+    <div class="info-item">
+      <div class="info-label">諮詢時長</div>
+      <div class="info-value">每次 <span>60 分鐘</span></div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">諮詢費用</div>
+      <div class="info-value"><span>NT$ 3,000</span> / 次</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">付款方式</div>
+      <div class="info-value">先匯款制</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">進行方式</div>
+      <div class="info-value">視訊會議</div>
+    </div>
+  </div>
+
+  <div class="bank-section">
+    <p>請於填表後完成匯款，再主動聯繫確認時間（Google Meet 或其他視訊軟體，另行通知）</p>
+    <div class="bank-detail">
+      <div><span>銀行</span>富邦銀行（012）</div>
+      <div><span>帳號</span>300168155402</div>
+    </div>
+  </div>
+
+  <div class="form-wrap">
+
+    <!-- section 1 -->
+    <div class="form-section">
+      <div class="section-head">
+        <div class="section-num">1</div>
+        <div class="section-title">報名人基本資料</div>
+      </div>
+      <div class="field">
+        <label>姓名<span class="req">*</span></label>
+        <input type="text" id="f-name" placeholder="請填寫真實姓名">
+      </div>
+      <div class="field">
+        <label>聯絡電話<span class="req">*</span></label>
+        <input type="tel" id="f-phone" placeholder="例：0912-345-678">
+      </div>
+      <div class="field">
+        <label>電子信箱<span class="req">*</span></label>
+        <input type="email" id="f-email" placeholder="例：example@gmail.com">
+      </div>
+      <div class="field">
+        <label>目前身份<span class="req">*</span></label>
+        <select id="f-role">
+          <option value="">請選擇</option>
+          <option>現職公務員</option>
+          <option>前公務員（已離職）</option>
+          <option>公職考生（準備中）</option>
+          <option>公職家屬或關係人</option>
+          <option>其他</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>服務機關／單位（選填）</label>
+        <input type="text" id="f-org" placeholder="例：○○縣政府衛生局">
+        <div class="hint">若涉及職場爭議，填寫有助於提前了解背景</div>
+      </div>
+    </div>
+
+    <!-- section 2 -->
+    <div class="form-section">
+      <div class="section-head">
+        <div class="section-num">2</div>
+        <div class="section-title">諮詢類型</div>
+      </div>
+      <div class="radio-group">
+        <div class="radio-option">
+          <input type="radio" name="consult-type" id="type-formal" value="formal">
+          <label for="type-formal">
+            <div class="opt-title">📋 正式問題諮詢</div>
+            <div class="opt-desc">有具體問題需要討論，例如解職、申訴、考核、職涯規劃等</div>
+          </label>
+        </div>
+        <div class="radio-option">
+          <input type="radio" name="consult-type" id="type-casual" value="casual">
+          <label for="type-casual">
+            <div class="opt-title">☕ 輕鬆聊聊</div>
+            <div class="opt-desc">想大概了解公職體制與工作權益，沒有特定問題，純聊為主</div>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- section 3 -->
+    <div class="form-section">
+      <div class="section-head">
+        <div class="section-num">3</div>
+        <div class="section-title">諮詢主題與問題</div>
+      </div>
+      <p style="font-size:13px;color:var(--text-mid);line-height:1.8;margin-bottom:1.1rem;">
+        可填寫多個主題，每個主題請先寫標題，再寫具體內容。<br>
+        <span style="color:var(--text-light);font-size:12px;">⚠️ 若諮詢當日提出表單以外的問題，視情況可能列入下次諮詢評估，不保證即時回答。</span>
+      </p>
+      <div id="topics-container"></div>
+      <button class="add-topic-btn" onclick="addTopic()">＋ 新增主題</button>
+    </div>
+
+    <!-- section 4 -->
+    <div class="form-section">
+      <div class="section-head">
+        <div class="section-num">4</div>
+        <div class="section-title">備註事項</div>
+      </div>
+      <div class="field">
+        <label>您希望諮詢後獲得什麼？（選填）</label>
+        <textarea id="f-goal" rows="3" placeholder="例：了解申訴勝算、確認下一步行動方向、釐清有哪些救濟管道…"></textarea>
+      </div>
+      <div class="field">
+        <label>方便的諮詢時段（選填）</label>
+        <input type="text" id="f-time" placeholder="例：平日晚上 7 點後、週末上午皆可">
+      </div>
+      <div class="field">
+        <label>其他備註（選填）</label>
+        <textarea id="f-note" rows="3" placeholder="任何想補充說明的事情都可以填在這裡"></textarea>
+      </div>
+    </div>
+
+    <!-- disclaimer -->
+    <div class="disclaimer">
+      <div class="disclaimer-title">免責聲明</div>
+      本服務提供者並非持有執照之心理師或諮商師，本服務不屬於心理諮商或心理治療性質。提供者亦非律師，所有內容僅為<strong>公職生涯經驗分享與資訊提供</strong>，不構成正式法律意見，亦不負任何法律責任。如有正式法律需求，請另行諮詢具執照之律師或相關專業機構。<br><br>
+      視訊會議連結（Google Meet 或其他軟體）將於確認匯款後另行通知。
+    </div>
+
+    <label class="agree-row">
+      <input type="checkbox" id="f-agree">
+      <span>我已閱讀並同意上述諮詢說明與免責聲明，並確認於付款後主動聯繫確認諮詢時間。</span>
+    </label>
+
+    <button class="submit-btn" id="submit-btn" onclick="submitForm()">送出報名表</button>
+    <div class="footer-note">
+      送出後請截圖保留，並主動聯繫確認付款與諮詢時間<br>
+      如需取消，請提前 24 小時告知
+    </div>
+  </div>
+</div>
+
+<!-- success screen -->
+<div id="success-screen">
+  <div class="success-card">
+    <div class="success-icon">🍋</div>
+    <h2>報名成功，謝謝你！</h2>
+    <p>我已收到您的報名資料。<br>請確認已完成匯款，再主動聯繫我確認諮詢時間。<br>視訊會議連結（Google Meet 或其他）將另行通知。</p>
+    <div class="summary-box" id="summary-content"></div>
+    <p style="font-size:12px;color:var(--text-light);">建議截圖保存此頁面作為報名紀錄</p>
+  </div>
+</div>
+
+<script>
+let topicCount = 0;
+
+function addTopic() {
+  topicCount++;
+  const container = document.getElementById('topics-container');
+  const block = document.createElement('div');
+  block.className = 'topic-block';
+  block.id = 'topic-' + topicCount;
+  block.innerHTML = `
+    <div class="topic-num">主題 ${topicCount}</div>
+    ${topicCount > 1 ? `<button class="remove-btn" onclick="removeTopic(${topicCount})" title="刪除此主題">×</button>` : ''}
+    <div class="field">
+      <label>主題標題<span class="req">*</span></label>
+      <input type="text" id="topic-title-${topicCount}" placeholder="例：解職申訴期限問題、試用期考核爭議…">
+    </div>
+    <div class="field" style="margin-bottom:0">
+      <label>具體內容說明<span class="req">*</span></label>
+      <textarea id="topic-content-${topicCount}" rows="4" placeholder="請詳述情況、時間脈絡與想了解的問題，資訊越詳細越好。"></textarea>
+    </div>
+  `;
+  container.appendChild(block);
+}
+
+function removeTopic(n) {
+  const el = document.getElementById('topic-' + n);
+  if (el) el.remove();
+  renumberTopics();
+}
+
+function renumberTopics() {
+  const blocks = document.querySelectorAll('.topic-block');
+  blocks.forEach((b, i) => {
+    const numEl = b.querySelector('.topic-num');
+    if (numEl) numEl.textContent = '主題 ' + (i + 1);
+  });
+}
+
+async function submitForm() {
+  const name = document.getElementById('f-name').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const role = document.getElementById('f-role').value;
+  const agree = document.getElementById('f-agree').checked;
+  const typeEl = document.querySelector('input[name=consult-type]:checked');
+  const typeMap = { formal: '正式問題諮詢', casual: '輕鬆聊聊' };
+
+  if (!name || !phone || !email || !role) { alert('請填寫姓名、電話、信箱與身份欄位。'); return; }
+  if (!typeEl) { alert('請選擇諮詢類型。'); return; }
+  if (!agree) { alert('請勾選同意免責聲明後再送出。'); return; }
+
+  const topics = [];
+  document.querySelectorAll('.topic-block').forEach((b, i) => {
+    const titleEl = b.querySelector('input[type=text]');
+    const contentEl = b.querySelector('textarea');
+    if (titleEl && contentEl) {
+      topics.push({ title: titleEl.value.trim(), content: contentEl.value.trim() });
+    }
+  });
+  if (topics.length === 0) { alert('請至少新增一個諮詢主題。'); return; }
+  const emptyTopic = topics.find(t => !t.title || !t.content);
+  if (emptyTopic) { alert('請填寫每個主題的標題與具體內容。'); return; }
+
+  const org = document.getElementById('f-org').value.trim();
+  const goal = document.getElementById('f-goal').value.trim();
+  const time = document.getElementById('f-time').value.trim();
+  const note = document.getElementById('f-note').value.trim();
+
+  let topicsText = '';
+  topics.forEach((t, i) => {
+    topicsText += `【主題${i+1}】${t.title}\n${t.content}\n\n`;
+  });
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = '送出中…';
+
+  try {
+    const res = await fetch('https://formspree.io/f/xjgdbalg', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        姓名: name,
+        電話: phone,
+        信箱: email,
+        身份: role,
+        機關: org || '（未填）',
+        諮詢類型: typeMap[typeEl.value],
+        諮詢主題: topicsText,
+        期望結果: goal || '（未填）',
+        方便時段: time || '（未填）',
+        其他備註: note || '（未填）'
+      })
+    });
+
+    if (res.ok) {
+      let summaryHTML = `
+        <div class="s-label">報名人</div>
+        <div>${name}｜${role}${org ? '｜' + org : ''}</div>
+        <div style="font-size:12px;color:var(--text-light)">${phone}｜${email}</div>
+        <hr class="summary-sep">
+        <div class="s-label">諮詢類型</div>
+        <div>${typeMap[typeEl.value]}</div>
+        <hr class="summary-sep">
+        <div class="s-label">諮詢主題（共 ${topics.length} 項）</div>
+      `;
+      topics.forEach((t, i) => {
+        summaryHTML += `<div style="margin-top:.5rem"><strong>${i+1}. ${t.title}</strong><br><span style="font-size:12px;color:var(--text-mid)">${t.content}</span></div>`;
+      });
+      if (goal || time || note) {
+        summaryHTML += `<hr class="summary-sep"><div class="s-label">備註</div>`;
+        if (goal) summaryHTML += `<div>期望：${goal}</div>`;
+        if (time) summaryHTML += `<div>時段：${time}</div>`;
+        if (note) summaryHTML += `<div>其他：${note}</div>`;
+      }
+      document.getElementById('summary-content').innerHTML = summaryHTML;
+      document.getElementById('form-view').style.display = 'none';
+      document.getElementById('success-screen').style.display = 'block';
+      window.scrollTo(0,0);
+    } else {
+      alert('送出失敗，請稍後再試，或直接聯繫我。');
+      btn.disabled = false;
+      btn.textContent = '送出報名表';
+    }
+  } catch(e) {
+    alert('網路連線異常，請稍後再試。');
+    btn.disabled = false;
+    btn.textContent = '送出報名表';
+  }
+}
+
+// init with one topic
+addTopic();
+</script>
+</body>
+</html>
