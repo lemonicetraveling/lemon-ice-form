@@ -55,10 +55,11 @@
   }
   .lemon-icon {
     width: 36px; height: 36px;
-    background: var(--lemon);
-    border-radius: 50% 50% 50% 10%;
+    background: linear-gradient(135deg, #AEE6F8 0%, #D6F3FC 100%);
+    border-radius: 8px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
+    font-size: 20px;
+    box-shadow: inset 0 -2px 4px rgba(255,255,255,0.6);
   }
   .brand-name {
     font-family: 'Noto Serif TC', serif;
@@ -695,29 +696,32 @@ let topicCount = 0;
 
 function addTopic() {
   topicCount++;
+  const id = topicCount;
   const container = document.getElementById('topics-container');
   const block = document.createElement('div');
   block.className = 'topic-block';
-  block.id = 'topic-' + topicCount;
+  block.dataset.id = id;
   block.innerHTML = `
-    <div class="topic-num">主題 ${topicCount}</div>
-    ${topicCount > 1 ? `<button class="remove-btn" onclick="removeTopic(${topicCount})" title="刪除此主題">×</button>` : ''}
+    <div class="topic-num">主題 1</div>
+    <button class="remove-btn" onclick="removeTopic(this)" title="刪除此主題" style="${container.children.length === 0 ? 'display:none' : ''}">×</button>
     <div class="field">
       <label>主題標題<span class="req">*</span></label>
-      <input type="text" id="topic-title-${topicCount}" placeholder="例：公職轉職的時機、主管關係的處理方式…">
+      <input type="text" placeholder="例：公職轉職的時機、主管關係的處理方式…">
     </div>
     <div class="field" style="margin-bottom:0">
       <label>具體內容說明<span class="req">*</span></label>
-      <textarea id="topic-content-${topicCount}" rows="4" placeholder="請描述你的情況、目前的困境，以及最想了解的問題。說得越具體，交流越有效率。"></textarea>
+      <textarea rows="4" placeholder="請描述你的情況、目前的困境，以及最想了解的問題。說得越具體，交流越有效率。"></textarea>
     </div>
   `;
   container.appendChild(block);
+  renumberTopics();
+  updateRemoveButtons();
 }
 
-function removeTopic(n) {
-  const el = document.getElementById('topic-' + n);
-  if (el) el.remove();
+function removeTopic(btn) {
+  btn.closest('.topic-block').remove();
   renumberTopics();
+  updateRemoveButtons();
 }
 
 function renumberTopics() {
@@ -725,6 +729,14 @@ function renumberTopics() {
   blocks.forEach((b, i) => {
     const numEl = b.querySelector('.topic-num');
     if (numEl) numEl.textContent = '主題 ' + (i + 1);
+  });
+}
+
+function updateRemoveButtons() {
+  const blocks = document.querySelectorAll('.topic-block');
+  blocks.forEach((b, i) => {
+    const btn = b.querySelector('.remove-btn');
+    if (btn) btn.style.display = blocks.length > 1 ? '' : 'none';
   });
 }
 
@@ -746,8 +758,7 @@ async function submitForm() {
     const titleEl = b.querySelector('input[type=text]');
     const contentEl = b.querySelector('textarea');
     if (titleEl && contentEl) topics.push({ title: titleEl.value.trim(), content: contentEl.value.trim() });
-  });
-  if (topics.length === 0) { alert('請至少新增一個想聊的主題。'); return; }
+  });  if (topics.length === 0) { alert('請至少新增一個想聊的主題。'); return; }
   if (topics.find(t => !t.title || !t.content)) { alert('請填寫每個主題的標題與具體內容。'); return; }
 
   const slots = [];
