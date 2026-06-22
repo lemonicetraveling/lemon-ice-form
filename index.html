@@ -765,9 +765,9 @@ async function submitForm() {
   for (let i = 1; i <= 5; i++) {
     const d = document.getElementById('slot-date-' + i).value;
     const t = document.getElementById('slot-time-' + i).value.trim();
-    if (d || t) slots.push((d || '日期未填') + '　' + (t || '時段未填'));
+    if (d && t) slots.push(d + '　' + t);
   }
-  if (slots.length < 3) { alert('請填寫至少三個方便的日期與時段。'); return; }
+  if (slots.length < 3) { alert('請填寫至少三個方便的日期與時段（日期和時段都需填寫）。'); return; }
 
   const org = document.getElementById('f-org').value.trim();
   const goal = document.getElementById('f-goal').value.trim();
